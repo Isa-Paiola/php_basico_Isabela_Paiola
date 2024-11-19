@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulário de Feedback</title>
+
 </head>
 <body>
+    
+    <h2>Deixe sua opnão sobre nosso atendimento!</h2>
     <form method="post" action="">
         <label for="nome">Nome:</label>
         <input type="text" name="nome" required><br>
@@ -19,8 +22,20 @@
     </form>
 
     <?php
+    // Verifica se o formulário foi enviado
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //Recebe os valores enviados pelo formulário 
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $mensagem = $_POST['mensagem'];
 
-    // Digitar PHP (1º Aqui)
+        // Valida se os campos não esão vazios e o email é válido
+        if (!empty($nome) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($mensagem)) {
+            echo "<p style='color: green;'>Feedback enviado com sucesso!</p>";
+        } else {
+            echo "<p style='color: red;'>Por favor, preencha todos os campos corretamente.</p>";
+        }
+    }
     
     ?>
 </body>

@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Clientes</title>
-
 </head>
 <body>
-
     <h2>Tela de cadastro</h2>
     <!-- método POST -->
     <form method="post" action="">
@@ -27,8 +25,7 @@
         $email = $_POST['email'];
 
         // Conecta ao banco de dados
-        // é possivel inserir o arquivo de conexão
-        $servername = "localhost";
+        $servername = "localhost:3309";
         $username = "root";
         $password = "";
         $dbname = "exercicio";
@@ -40,27 +37,26 @@
             die("Falha na conexão: " . $conn->connect_error);
         }
 
+        // Insere o registro no banco de dados
+        // Insere na tabela clientes os seguintes valores
+        $sql = "INSERT INTO clientes (nome, email) VALUES ('$nome', '$email')";
 
-        //Insere o registro no banco de dados
-        //Insere na tabela clientes os seguintes valores
-        $sql = "INSERT INTO clientes (nome, email) VALUES ('$nome', 'email')";
-
-        //Confere se a variável 'sql' esta correta
+        // confere se a variável 'sql' esta correta
         if ($conn->query($sql) === TRUE) {
-
-            //exibe a mensagem
-            echo "<p style= 'color: green; '>Cliente cadastrado com sucesso!</p>";
+            
+            //exibe a mensagem 
+            echo "<p style='color: green;'>Cliente cadastrado com sucesso!</p>";
         } else {
 
-            //exibe a mensagem
-            echo "<p style= 'color: red; '>Erro ao cadastrar: " . $conn->error . "</p>";
+            // exibe a mensagem
+            echo "<p style='color: red;'>Erro ao cadastrar: " . $conn->error . "</p>";
         }
 
         // Encerra a conexão
         $conn->close();
 
+
     }
     ?>
-    
 </body>
 </html>

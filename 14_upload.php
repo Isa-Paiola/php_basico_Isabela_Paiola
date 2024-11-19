@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Upload de Imagem</title>
+
 </head>
 <body>
+    
     <h2>Armazenar imagens</h2>
     
     <!-- formulário com método post -->
